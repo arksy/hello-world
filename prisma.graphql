@@ -1,5 +1,5 @@
 # source: http://localhost:4466
-# timestamp: Wed Sep 05 2018 21:21:54 GMT+0700 (WIB)
+# timestamp: Thu Sep 06 2018 01:35:28 GMT+0700 (WIB)
 
 type AggregateAnswer {
   count: Int!
