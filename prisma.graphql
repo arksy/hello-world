@@ -1,0 +1,2504 @@
+# source: http://localhost:4466
+# timestamp: Wed Sep 05 2018 21:21:54 GMT+0700 (WIB)
+
+type AggregateAnswer {
+  count: Int!
+}
+
+type AggregateDivision {
+  count: Int!
+}
+
+type AggregateForm {
+  count: Int!
+}
+
+type AggregateFormSection {
+  count: Int!
+}
+
+type AggregatePosition {
+  count: Int!
+}
+
+type AggregateSubmission {
+  count: Int!
+}
+
+type AggregateSubmissionComment {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type Answer implements Node {
+  id: ID!
+  status: Status!
+  content: String!
+  createdAt: DateTime!
+  answeredBy(where: UserWhereInput): User!
+}
+
+"""A connection to a list of items."""
+type AnswerConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [AnswerEdge]!
+  aggregate: AggregateAnswer!
+}
+
+input AnswerCreateInput {
+  status: Status
+  content: String!
+  answeredBy: UserCreateOneInput!
+}
+
+input AnswerCreateOneInput {
+  create: AnswerCreateInput
+  connect: AnswerWhereUniqueInput
+}
+
+"""An edge in a connection."""
+type AnswerEdge {
+  """The item at the end of the edge."""
+  node: Answer!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum AnswerOrderByInput {
+  id_ASC
+  id_DESC
+  status_ASC
+  status_DESC
+  content_ASC
+  content_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type AnswerPreviousValues {
+  id: ID!
+  status: Status!
+  content: String!
+  createdAt: DateTime!
+}
+
+type AnswerSubscriptionPayload {
+  mutation: MutationType!
+  node: Answer
+  updatedFields: [String!]
+  previousValues: AnswerPreviousValues
+}
+
+input AnswerSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [AnswerSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [AnswerSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [AnswerSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: AnswerWhereInput
+}
+
+input AnswerUpdateDataInput {
+  status: Status
+  content: String
+  answeredBy: UserUpdateOneInput
+}
+
+input AnswerUpdateInput {
+  status: Status
+  content: String
+  answeredBy: UserUpdateOneInput
+}
+
+input AnswerUpdateOneInput {
+  create: AnswerCreateInput
+  connect: AnswerWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: AnswerUpdateDataInput
+  upsert: AnswerUpsertNestedInput
+}
+
+input AnswerUpsertNestedInput {
+  update: AnswerUpdateDataInput!
+  create: AnswerCreateInput!
+}
+
+input AnswerWhereInput {
+  """Logical AND on all given filters."""
+  AND: [AnswerWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [AnswerWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [AnswerWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  status: Status
+
+  """All values that are not equal to given value."""
+  status_not: Status
+
+  """All values that are contained in given list."""
+  status_in: [Status!]
+
+  """All values that are not contained in given list."""
+  status_not_in: [Status!]
+  content: String
+
+  """All values that are not equal to given value."""
+  content_not: String
+
+  """All values that are contained in given list."""
+  content_in: [String!]
+
+  """All values that are not contained in given list."""
+  content_not_in: [String!]
+
+  """All values less than the given value."""
+  content_lt: String
+
+  """All values less than or equal the given value."""
+  content_lte: String
+
+  """All values greater than the given value."""
+  content_gt: String
+
+  """All values greater than or equal the given value."""
+  content_gte: String
+
+  """All values containing the given string."""
+  content_contains: String
+
+  """All values not containing the given string."""
+  content_not_contains: String
+
+  """All values starting with the given string."""
+  content_starts_with: String
+
+  """All values not starting with the given string."""
+  content_not_starts_with: String
+
+  """All values ending with the given string."""
+  content_ends_with: String
+
+  """All values not ending with the given string."""
+  content_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  answeredBy: UserWhereInput
+}
+
+input AnswerWhereUniqueInput {
+  id: ID
+}
+
+type BatchPayload {
+  """The number of nodes that have been affected by the Batch operation."""
+  count: Long!
+}
+
+scalar DateTime
+
+type Division implements Node {
+  id: ID!
+  divisionName: String!
+  divisionMembers(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
+  divisionForms(where: FormWhereInput, orderBy: FormOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Form!]
+}
+
+"""A connection to a list of items."""
+type DivisionConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [DivisionEdge]!
+  aggregate: AggregateDivision!
+}
+
+input DivisionCreateInput {
+  divisionName: String!
+  divisionMembers: UserCreateManyWithoutDivisionInput
+  divisionForms: FormCreateManyWithoutFormDivisionInput
+}
+
+input DivisionCreateOneWithoutDivisionFormsInput {
+  create: DivisionCreateWithoutDivisionFormsInput
+  connect: DivisionWhereUniqueInput
+}
+
+input DivisionCreateOneWithoutDivisionMembersInput {
+  create: DivisionCreateWithoutDivisionMembersInput
+  connect: DivisionWhereUniqueInput
+}
+
+input DivisionCreateWithoutDivisionFormsInput {
+  divisionName: String!
+  divisionMembers: UserCreateManyWithoutDivisionInput
+}
+
+input DivisionCreateWithoutDivisionMembersInput {
+  divisionName: String!
+  divisionForms: FormCreateManyWithoutFormDivisionInput
+}
+
+"""An edge in a connection."""
+type DivisionEdge {
+  """The item at the end of the edge."""
+  node: Division!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum DivisionOrderByInput {
+  id_ASC
+  id_DESC
+  divisionName_ASC
+  divisionName_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type DivisionPreviousValues {
+  id: ID!
+  divisionName: String!
+}
+
+type DivisionSubscriptionPayload {
+  mutation: MutationType!
+  node: Division
+  updatedFields: [String!]
+  previousValues: DivisionPreviousValues
+}
+
+input DivisionSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [DivisionSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [DivisionSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [DivisionSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: DivisionWhereInput
+}
+
+input DivisionUpdateInput {
+  divisionName: String
+  divisionMembers: UserUpdateManyWithoutDivisionInput
+  divisionForms: FormUpdateManyWithoutFormDivisionInput
+}
+
+input DivisionUpdateOneWithoutDivisionFormsInput {
+  create: DivisionCreateWithoutDivisionFormsInput
+  connect: DivisionWhereUniqueInput
+  delete: Boolean
+  update: DivisionUpdateWithoutDivisionFormsDataInput
+  upsert: DivisionUpsertWithoutDivisionFormsInput
+}
+
+input DivisionUpdateOneWithoutDivisionMembersInput {
+  create: DivisionCreateWithoutDivisionMembersInput
+  connect: DivisionWhereUniqueInput
+  delete: Boolean
+  update: DivisionUpdateWithoutDivisionMembersDataInput
+  upsert: DivisionUpsertWithoutDivisionMembersInput
+}
+
+input DivisionUpdateWithoutDivisionFormsDataInput {
+  divisionName: String
+  divisionMembers: UserUpdateManyWithoutDivisionInput
+}
+
+input DivisionUpdateWithoutDivisionMembersDataInput {
+  divisionName: String
+  divisionForms: FormUpdateManyWithoutFormDivisionInput
+}
+
+input DivisionUpsertWithoutDivisionFormsInput {
+  update: DivisionUpdateWithoutDivisionFormsDataInput!
+  create: DivisionCreateWithoutDivisionFormsInput!
+}
+
+input DivisionUpsertWithoutDivisionMembersInput {
+  update: DivisionUpdateWithoutDivisionMembersDataInput!
+  create: DivisionCreateWithoutDivisionMembersInput!
+}
+
+input DivisionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [DivisionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [DivisionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [DivisionWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  divisionName: String
+
+  """All values that are not equal to given value."""
+  divisionName_not: String
+
+  """All values that are contained in given list."""
+  divisionName_in: [String!]
+
+  """All values that are not contained in given list."""
+  divisionName_not_in: [String!]
+
+  """All values less than the given value."""
+  divisionName_lt: String
+
+  """All values less than or equal the given value."""
+  divisionName_lte: String
+
+  """All values greater than the given value."""
+  divisionName_gt: String
+
+  """All values greater than or equal the given value."""
+  divisionName_gte: String
+
+  """All values containing the given string."""
+  divisionName_contains: String
+
+  """All values not containing the given string."""
+  divisionName_not_contains: String
+
+  """All values starting with the given string."""
+  divisionName_starts_with: String
+
+  """All values not starting with the given string."""
+  divisionName_not_starts_with: String
+
+  """All values ending with the given string."""
+  divisionName_ends_with: String
+
+  """All values not ending with the given string."""
+  divisionName_not_ends_with: String
+  divisionMembers_every: UserWhereInput
+  divisionMembers_some: UserWhereInput
+  divisionMembers_none: UserWhereInput
+  divisionForms_every: FormWhereInput
+  divisionForms_some: FormWhereInput
+  divisionForms_none: FormWhereInput
+}
+
+input DivisionWhereUniqueInput {
+  id: ID
+  divisionName: String
+}
+
+type Form implements Node {
+  id: ID!
+  formName: String!
+  formCode: String!
+  formDivision(where: DivisionWhereInput): Division!
+  sections(where: FormSectionWhereInput, orderBy: FormSectionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [FormSection!]
+}
+
+"""A connection to a list of items."""
+type FormConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [FormEdge]!
+  aggregate: AggregateForm!
+}
+
+input FormCreateInput {
+  formName: String!
+  formCode: String!
+  formDivision: DivisionCreateOneWithoutDivisionFormsInput!
+  sections: FormSectionCreateManyWithoutFormRootInput
+}
+
+input FormCreateManyWithoutFormDivisionInput {
+  create: [FormCreateWithoutFormDivisionInput!]
+  connect: [FormWhereUniqueInput!]
+}
+
+input FormCreateOneInput {
+  create: FormCreateInput
+  connect: FormWhereUniqueInput
+}
+
+input FormCreateOneWithoutSectionsInput {
+  create: FormCreateWithoutSectionsInput
+  connect: FormWhereUniqueInput
+}
+
+input FormCreateWithoutFormDivisionInput {
+  formName: String!
+  formCode: String!
+  sections: FormSectionCreateManyWithoutFormRootInput
+}
+
+input FormCreateWithoutSectionsInput {
+  formName: String!
+  formCode: String!
+  formDivision: DivisionCreateOneWithoutDivisionFormsInput!
+}
+
+"""An edge in a connection."""
+type FormEdge {
+  """The item at the end of the edge."""
+  node: Form!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum FormOrderByInput {
+  id_ASC
+  id_DESC
+  formName_ASC
+  formName_DESC
+  formCode_ASC
+  formCode_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type FormPreviousValues {
+  id: ID!
+  formName: String!
+  formCode: String!
+}
+
+type FormSection implements Node {
+  id: ID!
+  formType: FormType!
+  schema: String!
+  answer(where: AnswerWhereInput): Answer
+  sectionOrder: Int!
+  authors(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
+  formRoot(where: FormWhereInput): Form!
+}
+
+"""A connection to a list of items."""
+type FormSectionConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [FormSectionEdge]!
+  aggregate: AggregateFormSection!
+}
+
+input FormSectionCreateInput {
+  formType: FormType!
+  schema: String!
+  sectionOrder: Int!
+  answer: AnswerCreateOneInput
+  authors: UserCreateManyInput
+  formRoot: FormCreateOneWithoutSectionsInput!
+}
+
+input FormSectionCreateManyWithoutFormRootInput {
+  create: [FormSectionCreateWithoutFormRootInput!]
+  connect: [FormSectionWhereUniqueInput!]
+}
+
+input FormSectionCreateWithoutFormRootInput {
+  formType: FormType!
+  schema: String!
+  sectionOrder: Int!
+  answer: AnswerCreateOneInput
+  authors: UserCreateManyInput
+}
+
+"""An edge in a connection."""
+type FormSectionEdge {
+  """The item at the end of the edge."""
+  node: FormSection!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum FormSectionOrderByInput {
+  id_ASC
+  id_DESC
+  formType_ASC
+  formType_DESC
+  schema_ASC
+  schema_DESC
+  sectionOrder_ASC
+  sectionOrder_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type FormSectionPreviousValues {
+  id: ID!
+  formType: FormType!
+  schema: String!
+  sectionOrder: Int!
+}
+
+type FormSectionSubscriptionPayload {
+  mutation: MutationType!
+  node: FormSection
+  updatedFields: [String!]
+  previousValues: FormSectionPreviousValues
+}
+
+input FormSectionSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [FormSectionSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [FormSectionSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [FormSectionSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: FormSectionWhereInput
+}
+
+input FormSectionUpdateInput {
+  formType: FormType
+  schema: String
+  sectionOrder: Int
+  answer: AnswerUpdateOneInput
+  authors: UserUpdateManyInput
+  formRoot: FormUpdateOneWithoutSectionsInput
+}
+
+input FormSectionUpdateManyWithoutFormRootInput {
+  create: [FormSectionCreateWithoutFormRootInput!]
+  connect: [FormSectionWhereUniqueInput!]
+  disconnect: [FormSectionWhereUniqueInput!]
+  delete: [FormSectionWhereUniqueInput!]
+  update: [FormSectionUpdateWithWhereUniqueWithoutFormRootInput!]
+  upsert: [FormSectionUpsertWithWhereUniqueWithoutFormRootInput!]
+}
+
+input FormSectionUpdateWithoutFormRootDataInput {
+  formType: FormType
+  schema: String
+  sectionOrder: Int
+  answer: AnswerUpdateOneInput
+  authors: UserUpdateManyInput
+}
+
+input FormSectionUpdateWithWhereUniqueWithoutFormRootInput {
+  where: FormSectionWhereUniqueInput!
+  data: FormSectionUpdateWithoutFormRootDataInput!
+}
+
+input FormSectionUpsertWithWhereUniqueWithoutFormRootInput {
+  where: FormSectionWhereUniqueInput!
+  update: FormSectionUpdateWithoutFormRootDataInput!
+  create: FormSectionCreateWithoutFormRootInput!
+}
+
+input FormSectionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [FormSectionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [FormSectionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [FormSectionWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  formType: FormType
+
+  """All values that are not equal to given value."""
+  formType_not: FormType
+
+  """All values that are contained in given list."""
+  formType_in: [FormType!]
+
+  """All values that are not contained in given list."""
+  formType_not_in: [FormType!]
+  schema: String
+
+  """All values that are not equal to given value."""
+  schema_not: String
+
+  """All values that are contained in given list."""
+  schema_in: [String!]
+
+  """All values that are not contained in given list."""
+  schema_not_in: [String!]
+
+  """All values less than the given value."""
+  schema_lt: String
+
+  """All values less than or equal the given value."""
+  schema_lte: String
+
+  """All values greater than the given value."""
+  schema_gt: String
+
+  """All values greater than or equal the given value."""
+  schema_gte: String
+
+  """All values containing the given string."""
+  schema_contains: String
+
+  """All values not containing the given string."""
+  schema_not_contains: String
+
+  """All values starting with the given string."""
+  schema_starts_with: String
+
+  """All values not starting with the given string."""
+  schema_not_starts_with: String
+
+  """All values ending with the given string."""
+  schema_ends_with: String
+
+  """All values not ending with the given string."""
+  schema_not_ends_with: String
+  sectionOrder: Int
+
+  """All values that are not equal to given value."""
+  sectionOrder_not: Int
+
+  """All values that are contained in given list."""
+  sectionOrder_in: [Int!]
+
+  """All values that are not contained in given list."""
+  sectionOrder_not_in: [Int!]
+
+  """All values less than the given value."""
+  sectionOrder_lt: Int
+
+  """All values less than or equal the given value."""
+  sectionOrder_lte: Int
+
+  """All values greater than the given value."""
+  sectionOrder_gt: Int
+
+  """All values greater than or equal the given value."""
+  sectionOrder_gte: Int
+  answer: AnswerWhereInput
+  authors_every: UserWhereInput
+  authors_some: UserWhereInput
+  authors_none: UserWhereInput
+  formRoot: FormWhereInput
+}
+
+input FormSectionWhereUniqueInput {
+  id: ID
+}
+
+type FormSubscriptionPayload {
+  mutation: MutationType!
+  node: Form
+  updatedFields: [String!]
+  previousValues: FormPreviousValues
+}
+
+input FormSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [FormSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [FormSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [FormSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: FormWhereInput
+}
+
+enum FormType {
+  Table
+  Letter
+  FormInput
+}
+
+input FormUpdateDataInput {
+  formName: String
+  formCode: String
+  formDivision: DivisionUpdateOneWithoutDivisionFormsInput
+  sections: FormSectionUpdateManyWithoutFormRootInput
+}
+
+input FormUpdateInput {
+  formName: String
+  formCode: String
+  formDivision: DivisionUpdateOneWithoutDivisionFormsInput
+  sections: FormSectionUpdateManyWithoutFormRootInput
+}
+
+input FormUpdateManyWithoutFormDivisionInput {
+  create: [FormCreateWithoutFormDivisionInput!]
+  connect: [FormWhereUniqueInput!]
+  disconnect: [FormWhereUniqueInput!]
+  delete: [FormWhereUniqueInput!]
+  update: [FormUpdateWithWhereUniqueWithoutFormDivisionInput!]
+  upsert: [FormUpsertWithWhereUniqueWithoutFormDivisionInput!]
+}
+
+input FormUpdateOneInput {
+  create: FormCreateInput
+  connect: FormWhereUniqueInput
+  delete: Boolean
+  update: FormUpdateDataInput
+  upsert: FormUpsertNestedInput
+}
+
+input FormUpdateOneWithoutSectionsInput {
+  create: FormCreateWithoutSectionsInput
+  connect: FormWhereUniqueInput
+  delete: Boolean
+  update: FormUpdateWithoutSectionsDataInput
+  upsert: FormUpsertWithoutSectionsInput
+}
+
+input FormUpdateWithoutFormDivisionDataInput {
+  formName: String
+  formCode: String
+  sections: FormSectionUpdateManyWithoutFormRootInput
+}
+
+input FormUpdateWithoutSectionsDataInput {
+  formName: String
+  formCode: String
+  formDivision: DivisionUpdateOneWithoutDivisionFormsInput
+}
+
+input FormUpdateWithWhereUniqueWithoutFormDivisionInput {
+  where: FormWhereUniqueInput!
+  data: FormUpdateWithoutFormDivisionDataInput!
+}
+
+input FormUpsertNestedInput {
+  update: FormUpdateDataInput!
+  create: FormCreateInput!
+}
+
+input FormUpsertWithoutSectionsInput {
+  update: FormUpdateWithoutSectionsDataInput!
+  create: FormCreateWithoutSectionsInput!
+}
+
+input FormUpsertWithWhereUniqueWithoutFormDivisionInput {
+  where: FormWhereUniqueInput!
+  update: FormUpdateWithoutFormDivisionDataInput!
+  create: FormCreateWithoutFormDivisionInput!
+}
+
+input FormWhereInput {
+  """Logical AND on all given filters."""
+  AND: [FormWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [FormWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [FormWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  formName: String
+
+  """All values that are not equal to given value."""
+  formName_not: String
+
+  """All values that are contained in given list."""
+  formName_in: [String!]
+
+  """All values that are not contained in given list."""
+  formName_not_in: [String!]
+
+  """All values less than the given value."""
+  formName_lt: String
+
+  """All values less than or equal the given value."""
+  formName_lte: String
+
+  """All values greater than the given value."""
+  formName_gt: String
+
+  """All values greater than or equal the given value."""
+  formName_gte: String
+
+  """All values containing the given string."""
+  formName_contains: String
+
+  """All values not containing the given string."""
+  formName_not_contains: String
+
+  """All values starting with the given string."""
+  formName_starts_with: String
+
+  """All values not starting with the given string."""
+  formName_not_starts_with: String
+
+  """All values ending with the given string."""
+  formName_ends_with: String
+
+  """All values not ending with the given string."""
+  formName_not_ends_with: String
+  formCode: String
+
+  """All values that are not equal to given value."""
+  formCode_not: String
+
+  """All values that are contained in given list."""
+  formCode_in: [String!]
+
+  """All values that are not contained in given list."""
+  formCode_not_in: [String!]
+
+  """All values less than the given value."""
+  formCode_lt: String
+
+  """All values less than or equal the given value."""
+  formCode_lte: String
+
+  """All values greater than the given value."""
+  formCode_gt: String
+
+  """All values greater than or equal the given value."""
+  formCode_gte: String
+
+  """All values containing the given string."""
+  formCode_contains: String
+
+  """All values not containing the given string."""
+  formCode_not_contains: String
+
+  """All values starting with the given string."""
+  formCode_starts_with: String
+
+  """All values not starting with the given string."""
+  formCode_not_starts_with: String
+
+  """All values ending with the given string."""
+  formCode_ends_with: String
+
+  """All values not ending with the given string."""
+  formCode_not_ends_with: String
+  formDivision: DivisionWhereInput
+  sections_every: FormSectionWhereInput
+  sections_some: FormSectionWhereInput
+  sections_none: FormSectionWhereInput
+}
+
+input FormWhereUniqueInput {
+  id: ID
+  formName: String
+  formCode: String
+}
+
+"""
+The `Long` scalar type represents non-fractional signed whole numeric values.
+Long can represent values between -(2^63) and 2^63 - 1.
+"""
+scalar Long
+
+type Mutation {
+  createFormSection(data: FormSectionCreateInput!): FormSection!
+  createSubmission(data: SubmissionCreateInput!): Submission!
+  createSubmissionComment(data: SubmissionCommentCreateInput!): SubmissionComment!
+  createDivision(data: DivisionCreateInput!): Division!
+  createPosition(data: PositionCreateInput!): Position!
+  createAnswer(data: AnswerCreateInput!): Answer!
+  createUser(data: UserCreateInput!): User!
+  createForm(data: FormCreateInput!): Form!
+  updateFormSection(data: FormSectionUpdateInput!, where: FormSectionWhereUniqueInput!): FormSection
+  updateSubmission(data: SubmissionUpdateInput!, where: SubmissionWhereUniqueInput!): Submission
+  updateSubmissionComment(data: SubmissionCommentUpdateInput!, where: SubmissionCommentWhereUniqueInput!): SubmissionComment
+  updateDivision(data: DivisionUpdateInput!, where: DivisionWhereUniqueInput!): Division
+  updatePosition(data: PositionUpdateInput!, where: PositionWhereUniqueInput!): Position
+  updateAnswer(data: AnswerUpdateInput!, where: AnswerWhereUniqueInput!): Answer
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateForm(data: FormUpdateInput!, where: FormWhereUniqueInput!): Form
+  deleteFormSection(where: FormSectionWhereUniqueInput!): FormSection
+  deleteSubmission(where: SubmissionWhereUniqueInput!): Submission
+  deleteSubmissionComment(where: SubmissionCommentWhereUniqueInput!): SubmissionComment
+  deleteDivision(where: DivisionWhereUniqueInput!): Division
+  deletePosition(where: PositionWhereUniqueInput!): Position
+  deleteAnswer(where: AnswerWhereUniqueInput!): Answer
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteForm(where: FormWhereUniqueInput!): Form
+  upsertFormSection(where: FormSectionWhereUniqueInput!, create: FormSectionCreateInput!, update: FormSectionUpdateInput!): FormSection!
+  upsertSubmission(where: SubmissionWhereUniqueInput!, create: SubmissionCreateInput!, update: SubmissionUpdateInput!): Submission!
+  upsertSubmissionComment(where: SubmissionCommentWhereUniqueInput!, create: SubmissionCommentCreateInput!, update: SubmissionCommentUpdateInput!): SubmissionComment!
+  upsertDivision(where: DivisionWhereUniqueInput!, create: DivisionCreateInput!, update: DivisionUpdateInput!): Division!
+  upsertPosition(where: PositionWhereUniqueInput!, create: PositionCreateInput!, update: PositionUpdateInput!): Position!
+  upsertAnswer(where: AnswerWhereUniqueInput!, create: AnswerCreateInput!, update: AnswerUpdateInput!): Answer!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  upsertForm(where: FormWhereUniqueInput!, create: FormCreateInput!, update: FormUpdateInput!): Form!
+  updateManyFormSections(data: FormSectionUpdateInput!, where: FormSectionWhereInput): BatchPayload!
+  updateManySubmissions(data: SubmissionUpdateInput!, where: SubmissionWhereInput): BatchPayload!
+  updateManySubmissionComments(data: SubmissionCommentUpdateInput!, where: SubmissionCommentWhereInput): BatchPayload!
+  updateManyDivisions(data: DivisionUpdateInput!, where: DivisionWhereInput): BatchPayload!
+  updateManyPositions(data: PositionUpdateInput!, where: PositionWhereInput): BatchPayload!
+  updateManyAnswers(data: AnswerUpdateInput!, where: AnswerWhereInput): BatchPayload!
+  updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
+  updateManyForms(data: FormUpdateInput!, where: FormWhereInput): BatchPayload!
+  deleteManyFormSections(where: FormSectionWhereInput): BatchPayload!
+  deleteManySubmissions(where: SubmissionWhereInput): BatchPayload!
+  deleteManySubmissionComments(where: SubmissionCommentWhereInput): BatchPayload!
+  deleteManyDivisions(where: DivisionWhereInput): BatchPayload!
+  deleteManyPositions(where: PositionWhereInput): BatchPayload!
+  deleteManyAnswers(where: AnswerWhereInput): BatchPayload!
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+  deleteManyForms(where: FormWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+}
+
+type Position implements Node {
+  id: ID!
+  positionName: String!
+  positionMembers(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
+}
+
+"""A connection to a list of items."""
+type PositionConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [PositionEdge]!
+  aggregate: AggregatePosition!
+}
+
+input PositionCreateInput {
+  positionName: String!
+  positionMembers: UserCreateManyWithoutPositionInput
+}
+
+input PositionCreateOneWithoutPositionMembersInput {
+  create: PositionCreateWithoutPositionMembersInput
+  connect: PositionWhereUniqueInput
+}
+
+input PositionCreateWithoutPositionMembersInput {
+  positionName: String!
+}
+
+"""An edge in a connection."""
+type PositionEdge {
+  """The item at the end of the edge."""
+  node: Position!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum PositionOrderByInput {
+  id_ASC
+  id_DESC
+  positionName_ASC
+  positionName_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type PositionPreviousValues {
+  id: ID!
+  positionName: String!
+}
+
+type PositionSubscriptionPayload {
+  mutation: MutationType!
+  node: Position
+  updatedFields: [String!]
+  previousValues: PositionPreviousValues
+}
+
+input PositionSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PositionSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PositionSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PositionSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: PositionWhereInput
+}
+
+input PositionUpdateInput {
+  positionName: String
+  positionMembers: UserUpdateManyWithoutPositionInput
+}
+
+input PositionUpdateOneWithoutPositionMembersInput {
+  create: PositionCreateWithoutPositionMembersInput
+  connect: PositionWhereUniqueInput
+  delete: Boolean
+  update: PositionUpdateWithoutPositionMembersDataInput
+  upsert: PositionUpsertWithoutPositionMembersInput
+}
+
+input PositionUpdateWithoutPositionMembersDataInput {
+  positionName: String
+}
+
+input PositionUpsertWithoutPositionMembersInput {
+  update: PositionUpdateWithoutPositionMembersDataInput!
+  create: PositionCreateWithoutPositionMembersInput!
+}
+
+input PositionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PositionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PositionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PositionWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  positionName: String
+
+  """All values that are not equal to given value."""
+  positionName_not: String
+
+  """All values that are contained in given list."""
+  positionName_in: [String!]
+
+  """All values that are not contained in given list."""
+  positionName_not_in: [String!]
+
+  """All values less than the given value."""
+  positionName_lt: String
+
+  """All values less than or equal the given value."""
+  positionName_lte: String
+
+  """All values greater than the given value."""
+  positionName_gt: String
+
+  """All values greater than or equal the given value."""
+  positionName_gte: String
+
+  """All values containing the given string."""
+  positionName_contains: String
+
+  """All values not containing the given string."""
+  positionName_not_contains: String
+
+  """All values starting with the given string."""
+  positionName_starts_with: String
+
+  """All values not starting with the given string."""
+  positionName_not_starts_with: String
+
+  """All values ending with the given string."""
+  positionName_ends_with: String
+
+  """All values not ending with the given string."""
+  positionName_not_ends_with: String
+  positionMembers_every: UserWhereInput
+  positionMembers_some: UserWhereInput
+  positionMembers_none: UserWhereInput
+}
+
+input PositionWhereUniqueInput {
+  id: ID
+  positionName: String
+}
+
+type Query {
+  formSections(where: FormSectionWhereInput, orderBy: FormSectionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [FormSection]!
+  submissions(where: SubmissionWhereInput, orderBy: SubmissionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Submission]!
+  submissionComments(where: SubmissionCommentWhereInput, orderBy: SubmissionCommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SubmissionComment]!
+  divisions(where: DivisionWhereInput, orderBy: DivisionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Division]!
+  positions(where: PositionWhereInput, orderBy: PositionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Position]!
+  answers(where: AnswerWhereInput, orderBy: AnswerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Answer]!
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  forms(where: FormWhereInput, orderBy: FormOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Form]!
+  formSection(where: FormSectionWhereUniqueInput!): FormSection
+  submission(where: SubmissionWhereUniqueInput!): Submission
+  submissionComment(where: SubmissionCommentWhereUniqueInput!): SubmissionComment
+  division(where: DivisionWhereUniqueInput!): Division
+  position(where: PositionWhereUniqueInput!): Position
+  answer(where: AnswerWhereUniqueInput!): Answer
+  user(where: UserWhereUniqueInput!): User
+  form(where: FormWhereUniqueInput!): Form
+  formSectionsConnection(where: FormSectionWhereInput, orderBy: FormSectionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FormSectionConnection!
+  submissionsConnection(where: SubmissionWhereInput, orderBy: SubmissionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SubmissionConnection!
+  submissionCommentsConnection(where: SubmissionCommentWhereInput, orderBy: SubmissionCommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SubmissionCommentConnection!
+  divisionsConnection(where: DivisionWhereInput, orderBy: DivisionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DivisionConnection!
+  positionsConnection(where: PositionWhereInput, orderBy: PositionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PositionConnection!
+  answersConnection(where: AnswerWhereInput, orderBy: AnswerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AnswerConnection!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  formsConnection(where: FormWhereInput, orderBy: FormOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FormConnection!
+
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+}
+
+enum Status {
+  READY_FOR_REVIEW
+  REQUEST_CHANGES
+  REJECT
+  COMPLETED
+}
+
+type Submission implements Node {
+  id: ID!
+  form(where: FormWhereInput): Form!
+  lastReviewedBy(where: UserWhereInput): User
+  status: Status!
+  createdBy(where: UserWhereInput): User!
+  comments(where: SubmissionCommentWhereInput, orderBy: SubmissionCommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SubmissionComment!]
+}
+
+type SubmissionComment implements Node {
+  id: ID!
+  createdBy(where: UserWhereInput): User!
+  message: String!
+  submission(where: SubmissionWhereInput): Submission!
+}
+
+"""A connection to a list of items."""
+type SubmissionCommentConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [SubmissionCommentEdge]!
+  aggregate: AggregateSubmissionComment!
+}
+
+input SubmissionCommentCreateInput {
+  message: String!
+  createdBy: UserCreateOneInput!
+  submission: SubmissionCreateOneWithoutCommentsInput!
+}
+
+input SubmissionCommentCreateManyWithoutSubmissionInput {
+  create: [SubmissionCommentCreateWithoutSubmissionInput!]
+  connect: [SubmissionCommentWhereUniqueInput!]
+}
+
+input SubmissionCommentCreateWithoutSubmissionInput {
+  message: String!
+  createdBy: UserCreateOneInput!
+}
+
+"""An edge in a connection."""
+type SubmissionCommentEdge {
+  """The item at the end of the edge."""
+  node: SubmissionComment!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum SubmissionCommentOrderByInput {
+  id_ASC
+  id_DESC
+  message_ASC
+  message_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type SubmissionCommentPreviousValues {
+  id: ID!
+  message: String!
+}
+
+type SubmissionCommentSubscriptionPayload {
+  mutation: MutationType!
+  node: SubmissionComment
+  updatedFields: [String!]
+  previousValues: SubmissionCommentPreviousValues
+}
+
+input SubmissionCommentSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [SubmissionCommentSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [SubmissionCommentSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [SubmissionCommentSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: SubmissionCommentWhereInput
+}
+
+input SubmissionCommentUpdateInput {
+  message: String
+  createdBy: UserUpdateOneInput
+  submission: SubmissionUpdateOneWithoutCommentsInput
+}
+
+input SubmissionCommentUpdateManyWithoutSubmissionInput {
+  create: [SubmissionCommentCreateWithoutSubmissionInput!]
+  connect: [SubmissionCommentWhereUniqueInput!]
+  disconnect: [SubmissionCommentWhereUniqueInput!]
+  delete: [SubmissionCommentWhereUniqueInput!]
+  update: [SubmissionCommentUpdateWithWhereUniqueWithoutSubmissionInput!]
+  upsert: [SubmissionCommentUpsertWithWhereUniqueWithoutSubmissionInput!]
+}
+
+input SubmissionCommentUpdateWithoutSubmissionDataInput {
+  message: String
+  createdBy: UserUpdateOneInput
+}
+
+input SubmissionCommentUpdateWithWhereUniqueWithoutSubmissionInput {
+  where: SubmissionCommentWhereUniqueInput!
+  data: SubmissionCommentUpdateWithoutSubmissionDataInput!
+}
+
+input SubmissionCommentUpsertWithWhereUniqueWithoutSubmissionInput {
+  where: SubmissionCommentWhereUniqueInput!
+  update: SubmissionCommentUpdateWithoutSubmissionDataInput!
+  create: SubmissionCommentCreateWithoutSubmissionInput!
+}
+
+input SubmissionCommentWhereInput {
+  """Logical AND on all given filters."""
+  AND: [SubmissionCommentWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [SubmissionCommentWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [SubmissionCommentWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  message: String
+
+  """All values that are not equal to given value."""
+  message_not: String
+
+  """All values that are contained in given list."""
+  message_in: [String!]
+
+  """All values that are not contained in given list."""
+  message_not_in: [String!]
+
+  """All values less than the given value."""
+  message_lt: String
+
+  """All values less than or equal the given value."""
+  message_lte: String
+
+  """All values greater than the given value."""
+  message_gt: String
+
+  """All values greater than or equal the given value."""
+  message_gte: String
+
+  """All values containing the given string."""
+  message_contains: String
+
+  """All values not containing the given string."""
+  message_not_contains: String
+
+  """All values starting with the given string."""
+  message_starts_with: String
+
+  """All values not starting with the given string."""
+  message_not_starts_with: String
+
+  """All values ending with the given string."""
+  message_ends_with: String
+
+  """All values not ending with the given string."""
+  message_not_ends_with: String
+  createdBy: UserWhereInput
+  submission: SubmissionWhereInput
+}
+
+input SubmissionCommentWhereUniqueInput {
+  id: ID
+}
+
+"""A connection to a list of items."""
+type SubmissionConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [SubmissionEdge]!
+  aggregate: AggregateSubmission!
+}
+
+input SubmissionCreateInput {
+  status: Status
+  form: FormCreateOneInput!
+  lastReviewedBy: UserCreateOneInput
+  createdBy: UserCreateOneInput!
+  comments: SubmissionCommentCreateManyWithoutSubmissionInput
+}
+
+input SubmissionCreateOneWithoutCommentsInput {
+  create: SubmissionCreateWithoutCommentsInput
+  connect: SubmissionWhereUniqueInput
+}
+
+input SubmissionCreateWithoutCommentsInput {
+  status: Status
+  form: FormCreateOneInput!
+  lastReviewedBy: UserCreateOneInput
+  createdBy: UserCreateOneInput!
+}
+
+"""An edge in a connection."""
+type SubmissionEdge {
+  """The item at the end of the edge."""
+  node: Submission!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum SubmissionOrderByInput {
+  id_ASC
+  id_DESC
+  status_ASC
+  status_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type SubmissionPreviousValues {
+  id: ID!
+  status: Status!
+}
+
+type SubmissionSubscriptionPayload {
+  mutation: MutationType!
+  node: Submission
+  updatedFields: [String!]
+  previousValues: SubmissionPreviousValues
+}
+
+input SubmissionSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [SubmissionSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [SubmissionSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [SubmissionSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: SubmissionWhereInput
+}
+
+input SubmissionUpdateInput {
+  status: Status
+  form: FormUpdateOneInput
+  lastReviewedBy: UserUpdateOneInput
+  createdBy: UserUpdateOneInput
+  comments: SubmissionCommentUpdateManyWithoutSubmissionInput
+}
+
+input SubmissionUpdateOneWithoutCommentsInput {
+  create: SubmissionCreateWithoutCommentsInput
+  connect: SubmissionWhereUniqueInput
+  delete: Boolean
+  update: SubmissionUpdateWithoutCommentsDataInput
+  upsert: SubmissionUpsertWithoutCommentsInput
+}
+
+input SubmissionUpdateWithoutCommentsDataInput {
+  status: Status
+  form: FormUpdateOneInput
+  lastReviewedBy: UserUpdateOneInput
+  createdBy: UserUpdateOneInput
+}
+
+input SubmissionUpsertWithoutCommentsInput {
+  update: SubmissionUpdateWithoutCommentsDataInput!
+  create: SubmissionCreateWithoutCommentsInput!
+}
+
+input SubmissionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [SubmissionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [SubmissionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [SubmissionWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  status: Status
+
+  """All values that are not equal to given value."""
+  status_not: Status
+
+  """All values that are contained in given list."""
+  status_in: [Status!]
+
+  """All values that are not contained in given list."""
+  status_not_in: [Status!]
+  form: FormWhereInput
+  lastReviewedBy: UserWhereInput
+  createdBy: UserWhereInput
+  comments_every: SubmissionCommentWhereInput
+  comments_some: SubmissionCommentWhereInput
+  comments_none: SubmissionCommentWhereInput
+}
+
+input SubmissionWhereUniqueInput {
+  id: ID
+}
+
+type Subscription {
+  formSection(where: FormSectionSubscriptionWhereInput): FormSectionSubscriptionPayload
+  submission(where: SubmissionSubscriptionWhereInput): SubmissionSubscriptionPayload
+  submissionComment(where: SubmissionCommentSubscriptionWhereInput): SubmissionCommentSubscriptionPayload
+  division(where: DivisionSubscriptionWhereInput): DivisionSubscriptionPayload
+  position(where: PositionSubscriptionWhereInput): PositionSubscriptionPayload
+  answer(where: AnswerSubscriptionWhereInput): AnswerSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  form(where: FormSubscriptionWhereInput): FormSubscriptionPayload
+}
+
+type User implements Node {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  password: String!
+  email: String
+  createdAt: DateTime!
+  role: UserRole!
+  division(where: DivisionWhereInput): Division!
+  position(where: PositionWhereInput): Position!
+  pictureUrl: String!
+}
+
+"""A connection to a list of items."""
+type UserConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  firstName: String!
+  lastName: String
+  password: String!
+  email: String
+  role: UserRole!
+  pictureUrl: String
+  division: DivisionCreateOneWithoutDivisionMembersInput!
+  position: PositionCreateOneWithoutPositionMembersInput!
+}
+
+input UserCreateManyInput {
+  create: [UserCreateInput!]
+  connect: [UserWhereUniqueInput!]
+}
+
+input UserCreateManyWithoutDivisionInput {
+  create: [UserCreateWithoutDivisionInput!]
+  connect: [UserWhereUniqueInput!]
+}
+
+input UserCreateManyWithoutPositionInput {
+  create: [UserCreateWithoutPositionInput!]
+  connect: [UserWhereUniqueInput!]
+}
+
+input UserCreateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutDivisionInput {
+  firstName: String!
+  lastName: String
+  password: String!
+  email: String
+  role: UserRole!
+  pictureUrl: String
+  position: PositionCreateOneWithoutPositionMembersInput!
+}
+
+input UserCreateWithoutPositionInput {
+  firstName: String!
+  lastName: String
+  password: String!
+  email: String
+  role: UserRole!
+  pictureUrl: String
+  division: DivisionCreateOneWithoutDivisionMembersInput!
+}
+
+"""An edge in a connection."""
+type UserEdge {
+  """The item at the end of the edge."""
+  node: User!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  firstName_ASC
+  firstName_DESC
+  lastName_ASC
+  lastName_DESC
+  password_ASC
+  password_DESC
+  email_ASC
+  email_DESC
+  createdAt_ASC
+  createdAt_DESC
+  role_ASC
+  role_DESC
+  pictureUrl_ASC
+  pictureUrl_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  password: String!
+  email: String
+  createdAt: DateTime!
+  role: UserRole!
+  pictureUrl: String!
+}
+
+enum UserRole {
+  ADMIN
+  TEAMLEADER
+  MEMBER
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+}
+
+input UserUpdateDataInput {
+  firstName: String
+  lastName: String
+  password: String
+  email: String
+  role: UserRole
+  pictureUrl: String
+  division: DivisionUpdateOneWithoutDivisionMembersInput
+  position: PositionUpdateOneWithoutPositionMembersInput
+}
+
+input UserUpdateInput {
+  firstName: String
+  lastName: String
+  password: String
+  email: String
+  role: UserRole
+  pictureUrl: String
+  division: DivisionUpdateOneWithoutDivisionMembersInput
+  position: PositionUpdateOneWithoutPositionMembersInput
+}
+
+input UserUpdateManyInput {
+  create: [UserCreateInput!]
+  connect: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  delete: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueNestedInput!]
+  upsert: [UserUpsertWithWhereUniqueNestedInput!]
+}
+
+input UserUpdateManyWithoutDivisionInput {
+  create: [UserCreateWithoutDivisionInput!]
+  connect: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  delete: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutDivisionInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutDivisionInput!]
+}
+
+input UserUpdateManyWithoutPositionInput {
+  create: [UserCreateWithoutPositionInput!]
+  connect: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  delete: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutPositionInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutPositionInput!]
+}
+
+input UserUpdateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+  delete: Boolean
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
+}
+
+input UserUpdateWithoutDivisionDataInput {
+  firstName: String
+  lastName: String
+  password: String
+  email: String
+  role: UserRole
+  pictureUrl: String
+  position: PositionUpdateOneWithoutPositionMembersInput
+}
+
+input UserUpdateWithoutPositionDataInput {
+  firstName: String
+  lastName: String
+  password: String
+  email: String
+  role: UserRole
+  pictureUrl: String
+  division: DivisionUpdateOneWithoutDivisionMembersInput
+}
+
+input UserUpdateWithWhereUniqueNestedInput {
+  where: UserWhereUniqueInput!
+  data: UserUpdateDataInput!
+}
+
+input UserUpdateWithWhereUniqueWithoutDivisionInput {
+  where: UserWhereUniqueInput!
+  data: UserUpdateWithoutDivisionDataInput!
+}
+
+input UserUpdateWithWhereUniqueWithoutPositionInput {
+  where: UserWhereUniqueInput!
+  data: UserUpdateWithoutPositionDataInput!
+}
+
+input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
+}
+
+input UserUpsertWithWhereUniqueNestedInput {
+  where: UserWhereUniqueInput!
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
+}
+
+input UserUpsertWithWhereUniqueWithoutDivisionInput {
+  where: UserWhereUniqueInput!
+  update: UserUpdateWithoutDivisionDataInput!
+  create: UserCreateWithoutDivisionInput!
+}
+
+input UserUpsertWithWhereUniqueWithoutPositionInput {
+  where: UserWhereUniqueInput!
+  update: UserUpdateWithoutPositionDataInput!
+  create: UserCreateWithoutPositionInput!
+}
+
+input UserWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  firstName: String
+
+  """All values that are not equal to given value."""
+  firstName_not: String
+
+  """All values that are contained in given list."""
+  firstName_in: [String!]
+
+  """All values that are not contained in given list."""
+  firstName_not_in: [String!]
+
+  """All values less than the given value."""
+  firstName_lt: String
+
+  """All values less than or equal the given value."""
+  firstName_lte: String
+
+  """All values greater than the given value."""
+  firstName_gt: String
+
+  """All values greater than or equal the given value."""
+  firstName_gte: String
+
+  """All values containing the given string."""
+  firstName_contains: String
+
+  """All values not containing the given string."""
+  firstName_not_contains: String
+
+  """All values starting with the given string."""
+  firstName_starts_with: String
+
+  """All values not starting with the given string."""
+  firstName_not_starts_with: String
+
+  """All values ending with the given string."""
+  firstName_ends_with: String
+
+  """All values not ending with the given string."""
+  firstName_not_ends_with: String
+  lastName: String
+
+  """All values that are not equal to given value."""
+  lastName_not: String
+
+  """All values that are contained in given list."""
+  lastName_in: [String!]
+
+  """All values that are not contained in given list."""
+  lastName_not_in: [String!]
+
+  """All values less than the given value."""
+  lastName_lt: String
+
+  """All values less than or equal the given value."""
+  lastName_lte: String
+
+  """All values greater than the given value."""
+  lastName_gt: String
+
+  """All values greater than or equal the given value."""
+  lastName_gte: String
+
+  """All values containing the given string."""
+  lastName_contains: String
+
+  """All values not containing the given string."""
+  lastName_not_contains: String
+
+  """All values starting with the given string."""
+  lastName_starts_with: String
+
+  """All values not starting with the given string."""
+  lastName_not_starts_with: String
+
+  """All values ending with the given string."""
+  lastName_ends_with: String
+
+  """All values not ending with the given string."""
+  lastName_not_ends_with: String
+  password: String
+
+  """All values that are not equal to given value."""
+  password_not: String
+
+  """All values that are contained in given list."""
+  password_in: [String!]
+
+  """All values that are not contained in given list."""
+  password_not_in: [String!]
+
+  """All values less than the given value."""
+  password_lt: String
+
+  """All values less than or equal the given value."""
+  password_lte: String
+
+  """All values greater than the given value."""
+  password_gt: String
+
+  """All values greater than or equal the given value."""
+  password_gte: String
+
+  """All values containing the given string."""
+  password_contains: String
+
+  """All values not containing the given string."""
+  password_not_contains: String
+
+  """All values starting with the given string."""
+  password_starts_with: String
+
+  """All values not starting with the given string."""
+  password_not_starts_with: String
+
+  """All values ending with the given string."""
+  password_ends_with: String
+
+  """All values not ending with the given string."""
+  password_not_ends_with: String
+  email: String
+
+  """All values that are not equal to given value."""
+  email_not: String
+
+  """All values that are contained in given list."""
+  email_in: [String!]
+
+  """All values that are not contained in given list."""
+  email_not_in: [String!]
+
+  """All values less than the given value."""
+  email_lt: String
+
+  """All values less than or equal the given value."""
+  email_lte: String
+
+  """All values greater than the given value."""
+  email_gt: String
+
+  """All values greater than or equal the given value."""
+  email_gte: String
+
+  """All values containing the given string."""
+  email_contains: String
+
+  """All values not containing the given string."""
+  email_not_contains: String
+
+  """All values starting with the given string."""
+  email_starts_with: String
+
+  """All values not starting with the given string."""
+  email_not_starts_with: String
+
+  """All values ending with the given string."""
+  email_ends_with: String
+
+  """All values not ending with the given string."""
+  email_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  role: UserRole
+
+  """All values that are not equal to given value."""
+  role_not: UserRole
+
+  """All values that are contained in given list."""
+  role_in: [UserRole!]
+
+  """All values that are not contained in given list."""
+  role_not_in: [UserRole!]
+  pictureUrl: String
+
+  """All values that are not equal to given value."""
+  pictureUrl_not: String
+
+  """All values that are contained in given list."""
+  pictureUrl_in: [String!]
+
+  """All values that are not contained in given list."""
+  pictureUrl_not_in: [String!]
+
+  """All values less than the given value."""
+  pictureUrl_lt: String
+
+  """All values less than or equal the given value."""
+  pictureUrl_lte: String
+
+  """All values greater than the given value."""
+  pictureUrl_gt: String
+
+  """All values greater than or equal the given value."""
+  pictureUrl_gte: String
+
+  """All values containing the given string."""
+  pictureUrl_contains: String
+
+  """All values not containing the given string."""
+  pictureUrl_not_contains: String
+
+  """All values starting with the given string."""
+  pictureUrl_starts_with: String
+
+  """All values not starting with the given string."""
+  pictureUrl_not_starts_with: String
+
+  """All values ending with the given string."""
+  pictureUrl_ends_with: String
+
+  """All values not ending with the given string."""
+  pictureUrl_not_ends_with: String
+  division: DivisionWhereInput
+  position: PositionWhereInput
+}
+
+input UserWhereUniqueInput {
+  id: ID
+  email: String
+}
